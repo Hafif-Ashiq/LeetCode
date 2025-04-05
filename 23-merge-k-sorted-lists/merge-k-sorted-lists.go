@@ -6,6 +6,9 @@
  * }
  */
 func mergeKLists(lists []*ListNode) *ListNode {
+    if len(lists) == 0 {
+		return nil
+	}
 	var finalList *ListNode
 
 	for _, list := range lists {
