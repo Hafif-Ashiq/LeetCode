@@ -6,6 +6,10 @@
  * }
  */
 func deleteDuplicates(head *ListNode) *ListNode {
+    if head == nil || head.Next == nil{
+		return head
+	}
+
 	dumm := &ListNode{-1, head}
 	iter := dumm.Next
 	leading := dumm
