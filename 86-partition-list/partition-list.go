@@ -22,7 +22,6 @@ func partition(head *ListNode, x int) *ListNode {
 	for iter != nil {
 
 		if iter.Val < x {
-			fmt.Println(iter.Val)
 			if before == nil {
 				before = iter
 				beforeLast = iter
