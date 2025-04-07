@@ -7,29 +7,21 @@
  */
 func reverseList(head *ListNode) *ListNode {
 
-	last := head
-
-	for last.Next != nil {
-		last = last.Next
+	if head == nil || head.Next == nil {
+		return head
 	}
 
-	anchorL := last
+	var pos *ListNode
 
-	for {
-		iter := head
+	for head != nil {
+		nextH := head.Next // 2
+		head.Next = pos
+		pos = head // 1
+		head = nextH
 
-		for iter.Next != anchorL {
-			iter = iter.Next
-		}
-		anchorL.Next = iter
-		anchorL = iter
-
-		if anchorL == head {
-			break
-		}
 	}
-	head.Next = nil
-	return last
+
+	return pos
 }
 
 func reverseBetween(head *ListNode, left int, right int) *ListNode {
