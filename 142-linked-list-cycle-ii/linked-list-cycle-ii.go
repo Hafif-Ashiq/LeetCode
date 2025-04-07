@@ -13,18 +13,32 @@ func detectCycle(head *ListNode) *ListNode {
 		return head
 	}
 
-	arr := make([]*ListNode, 5)
-
-	iter := head
-
-	for iter != nil {
-		if slices.Contains(arr, iter) {
-			return iter
+	walker := head
+	runner := head
+	for walker != nil && runner != nil {
+		walker = walker.Next
+		if runner.Next != nil {
+			runner = runner.Next.Next
+		} else {
+			break
 		}
-		arr = append(arr, iter)
-		iter = iter.Next
+		if runner == walker {
+			break
+		}
 	}
 
-	return nil
+	if runner == nil || runner.Next == nil {
+		return nil
+	}
+
+	newS := head
+
+	for newS != walker {
+		newS = newS.Next
+		walker = walker.Next
+	}
+
+	return newS
 
 }
+
