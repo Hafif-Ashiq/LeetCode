@@ -10,27 +10,16 @@ func reverseList(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
-	last := head
 
-	for last.Next != nil {
-		last = last.Next
+	var pos *ListNode
+
+	for head != nil {
+		nextH := head.Next // 2
+		head.Next = pos
+		pos = head // 1
+		head = nextH
+
 	}
 
-	anchorL := last
-
-	for {
-		iter := head
-
-		for iter.Next != anchorL {
-			iter = iter.Next
-		}
-		anchorL.Next = iter
-		anchorL = iter
-
-		if anchorL == head {
-			break
-		}
-	}
-	head.Next = nil
-	return last
+	return pos
 }
