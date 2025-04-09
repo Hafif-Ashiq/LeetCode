@@ -11,18 +11,17 @@ func oddEvenList(head *ListNode) *ListNode {
 		return head
 	}
 
-	dummOdd := &ListNode{-1, nil}
-	dummEven := &ListNode{-1, nil}
+	dummOdd := new(ListNode)
+	dummEven := new(ListNode)
 
 	oddTail := dummOdd
 	evenTail := dummEven
 
 	iter := head
-
 	index := 1
 
 	for iter != nil {
-		if index%2 == 0 {
+		if index % 2 == 0 {
 			evenTail.Next = iter
 			evenTail = iter
 			iter = iter.Next
