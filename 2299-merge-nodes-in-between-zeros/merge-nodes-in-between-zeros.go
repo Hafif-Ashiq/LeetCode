@@ -19,7 +19,6 @@ func mergeNodes(head *ListNode) *ListNode {
 			finalEnd.Next = &ListNode{sum, nil}
 			finalEnd = finalEnd.Next
 			sum = 0
-
 		} else {
 			sum += iter.Val
 		}
