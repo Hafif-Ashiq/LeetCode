@@ -24,28 +24,28 @@ func merge(left, right *ListNode) *ListNode {
 	dumm := new(ListNode)
 	dummEnd := dumm
 
-	for left != nil || right != nil {
-		if left == nil {
-			dummEnd.Next = right
-			right = right.Next
-		} else if right == nil {
+	for left != nil && right != nil {
+
+		if left.Val <= right.Val {
 			dummEnd.Next = left
 			left = left.Next
 		} else {
-			if left.Val <= right.Val {
-				dummEnd.Next = left
-				left = left.Next
-			} else {
-				dummEnd.Next = right
-				right = right.Next
-			}
+			dummEnd.Next = right
+			right = right.Next
 		}
+
 		dummEnd = dummEnd.Next
 	}
+
+	if left == nil {
+		dummEnd.Next = right
+	} else if right == nil {
+		dummEnd.Next = left
+	}
+
 	return dumm.Next
 
 }
-
 func middle(head *ListNode) *ListNode {
 	slow := head
 	fast := head
