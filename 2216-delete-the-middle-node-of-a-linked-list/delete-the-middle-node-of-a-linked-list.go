@@ -6,7 +6,7 @@
  * }
  */
 func deleteMiddle(head *ListNode) *ListNode {
-	if head == nil || head.Next == nil {
+	if head.Next == nil {
 		return nil
 	}
 
