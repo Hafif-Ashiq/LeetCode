@@ -19,6 +19,7 @@ func mergeInBetween(list1 *ListNode, a int, b int, list2 *ListNode) *ListNode {
 		} 
         if i == b {
 			second = iter.Next
+            break
 		}
 		leading = iter
 		iter = iter.Next
