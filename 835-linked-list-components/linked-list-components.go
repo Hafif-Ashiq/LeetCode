@@ -7,7 +7,6 @@
  */
 
 
-
 func numComponents(head *ListNode, nums []int) int {
 	if head.Next == nil && slices.Contains(nums, head.Val) {
 		return 1
@@ -15,25 +14,30 @@ func numComponents(head *ListNode, nums []int) int {
 
 	count := 0
 
+	set := make(map[int]bool, len(nums))
+	for _, v := range nums {
+		set[v] = true
+	}
+
 	iter := head
 
 	nonCons := false
 	for iter.Next != nil {
-		if iter == head && (slices.Contains(nums, iter.Val) && !slices.Contains(nums, iter.Next.Val)) {
+		if iter == head && (set[iter.Val] && !set[iter.Next.Val]) {
 			// fmt.Println("Here")
 			// fmt.Println(iter.Val)
 			count++
-		} else if slices.Contains(nums, iter.Val) && slices.Contains(nums, iter.Next.Val) {
+		} else if set[iter.Val] && set[iter.Next.Val] {
 			// fmt.Println("Here 2")
 			// fmt.Println(iter.Val)
 			// h2 := iter.Next
-			for iter.Next.Next != nil && slices.Contains(nums, iter.Next.Val) {
+			for iter.Next.Next != nil && set[iter.Next.Val] {
 				iter = iter.Next
 			}
 
 			count++
 			nonCons = false
-		} else if nonCons && (slices.Contains(nums, iter.Val)) {
+		} else if nonCons && (set[iter.Val]) {
 			// fmt.Println("Here 3")
 			// fmt.Println(iter.Val)
 			count++
@@ -43,7 +47,7 @@ func numComponents(head *ListNode, nums []int) int {
 		}
 		iter = iter.Next
 	}
-	if slices.Contains(nums, iter.Val) && nonCons {
+	if set[iter.Val] && nonCons {
 		count++
 	}
 	return count
