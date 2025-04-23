@@ -33,39 +33,33 @@ func reverseEvenLengthGroups(head *ListNode) *ListNode {
 
 	for iter != nil {
 
-		// if curr%2 == 0 {
 		count := 0
 		nextIter := iter
 		var leadingNext *ListNode
-		// fmt.Println(iter)
+		
 		for count < curr && nextIter != nil {
 			leadingNext = nextIter
 			nextIter = nextIter.Next
 			count++
 		}
-		// print(head)
-		// fmt.Println(count)
-		if  count%2 == 0 {
-			// fmt.Println("here")
-			// print(leadingNext)
-			leadingNext.Next = nil
+		
+        if  count%2 == 0 {
+		
+        	leadingNext.Next = nil
 			rev := reverseList(iter)
-			// print(rev)
-			// print(leading)
-			// print(nextIter)
-			leading.Next = rev
+		
+        	leading.Next = rev
 			leading = iter
 			iter.Next = nextIter
 			iter = iter.Next
-			curr++
 			i = 0
 		} else {
 			leading = leadingNext
 			iter = nextIter
 			i++
-			curr++
-
 		}
+        curr++
+
 
 	}
 
