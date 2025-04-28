@@ -24,7 +24,7 @@ func invert(arr []byte) []byte {
 func letters(s []byte, k int, n int) byte {
 	length := len(s)
 
-	if length > k && n == 0 {
+	if length > k {
 		
 		return s[k-1]
 	}
