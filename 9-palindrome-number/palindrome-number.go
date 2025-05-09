@@ -11,20 +11,13 @@ func isPalindrome(x int) bool {
 
 	temp := x
 	reverse := 0
-	//first := 1
+	
 	for temp >= 1 {
 		rem := temp % 10
 		temp = temp / 10
-		// fmt.Println(rem)
-		// fmt.Println(temp)
-		// fmt.Println("--------")
-
 		reverse = rem + (reverse * 10)
-		//first *= 10
-
+		
 	}
-
-	// fmt.Println(reverse)
 
 	return reverse == x
 
